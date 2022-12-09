@@ -11,6 +11,7 @@ public class Commands implements CommandExecutor {
     private JavaPlugin plugin;
     public Commands(JavaPlugin plugin) {
         this.plugin = plugin;
+        plugin.getCommand("lottery").setExecutor(this);
     }
 
     @Override
