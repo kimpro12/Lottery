@@ -1,0 +1,12 @@
+name: Lottery
+version: '1.0-SNAPSHOT'
+main: me.lottery.Lottery
+authors: [ KIM ]
+description: KIM
+api-version: 1.13
+depend:
+  - Vault
+commands:
+  lottery:
+    description: Lottery
+    usage: /lottery

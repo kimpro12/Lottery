@@ -1,0 +1,9 @@
+Gia-Ban-Ve-So: 100
+Ko-Du-Tien-Mua: Ban ko du tien mua ve so
+Min: 0
+Max: 50
+Message-1: "Your number is"
+Message-2: "You don't have permission"
+Time-Check-Player-Winner:
+  hour: 07
+  minute: 00
