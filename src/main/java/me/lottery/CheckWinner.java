@@ -31,7 +31,9 @@ public class CheckWinner {
                 String k = formatter.format(date);
                 String k1 = formatter.format(date);
                 if (plugin.getConfig().getString("Time-Check-Player-Winner.hour").equals(k) && plugin.getConfig().getString("Time-Check-Player-Winner.minute").equals(k1)) {
-                    Bukkit.broadcastMessage(getPlayerWinner() + " is the winner lottery today");
+                    if (getPlayerWinner() != null) {
+                        Bukkit.broadcastMessage(getPlayerWinner() + " is the winner lottery today");
+                    }
                 }
             }
         }, 0, 20);
