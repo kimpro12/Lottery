@@ -1,6 +1,7 @@
 package me.lottery;
 
-import net.milkbowl.vault.chat.Chat;
+import me.lottery.Check.CheckWinner;
+import me.lottery.Command.Command;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -9,28 +10,31 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Logger;
 
 public final class Lottery extends JavaPlugin {
-    private static Economy econ = null;
     private static final Logger log = Logger.getLogger("Minecraft");
-    private static Chat chat = null;
+    private static Economy econ = null;
+
     @Override
     public void onEnable() {
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
+        Bukkit.getConsoleSender().sendMessage("[Lottery] Plugin enabled");
         if (!setupEconomy() ) {
             log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-        if (new ItemVeSo(this).getMin() < 0) {
+        if (getHour() < 0 || getMinute() < 0) {
+            Bukkit.getConsoleSender().sendMessage("[Lottery] Plugin disabled due to Hour and Minute in config file is a negative number");
             getServer().getPluginManager().disablePlugin(this);
+            return;
         }
-        Bukkit.getConsoleSender().sendMessage("[Lottery] Plugin enabled");
-        new CheckWinner(this).run();
+        new Command(this);
+        new CheckWinner(this).Check();
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage("[Lottery] Plugin disabled");
+        Bukkit.getConsoleSender().sendMessage("[Lottery] Plugin enabled");
     }
     private boolean setupEconomy() {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
@@ -43,13 +47,13 @@ public final class Lottery extends JavaPlugin {
         econ = rsp.getProvider();
         return econ != null;
     }
-    private boolean setupChat() {
-        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
-        chat = rsp.getProvider();
-        return chat != null;
-    }
-
-    public static Economy getEcon() {
+    public static Economy getEconomy() {
         return econ;
+    }
+    public Integer getHour() {
+        return getConfig().getInt("Time-Check-Trung-Thuong.Hour");
+    }
+    public Integer getMinute() {
+        return getConfig().getInt("Time-Check-Trung-Thuong.Minute");
     }
 }

@@ -1,9 +1,15 @@
-Gia-Ban-Ve-So: 100
-Ko-Du-Tien-Mua: Ban ko du tien mua ve so
-Min: 0
-Max: 50
-Message-1: "Your number is"
-Message-2: "You don't have permission"
-Time-Check-Player-Winner:
-  hour: 07
-  minute: 00
+Name-Item: "Ve so"
+Max-Number: 100
+#Lore : So may man cua ban la .. So may man cua ban la ..
+Message-1: "So may man cua ban la"
+Message-2: "Co hieu luc trong ngay"
+#Message : Ban da mat .. Bay gio con ..
+Message-3: "Ban da mat"
+Message-4: "Bay gio ban con"
+#Message nay hien ra khi nguoi choi khong du tien mua ve so
+Message-5: "Ban khong du tien"
+Gia-Tien-Ve-So: 30
+Tien-Trung-Thuong: 10000
+Time-Check-Trung-Thuong:
+  Hour: 7
+  Minute: 30

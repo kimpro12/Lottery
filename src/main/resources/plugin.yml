@@ -9,4 +9,3 @@ depend:
 commands:
   lottery:
     description: Lottery
-    usage: /lottery
